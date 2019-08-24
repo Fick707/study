@@ -29,13 +29,13 @@ Lucene是当下最先进、高性能、全功能的搜索引擎库，ES即是基
 
 ## 文档
 ### es文档元数据
-* _index:文档所属索引
-* _type:类型
-* _id:唯一索引
-* _version
-* _seq_no
-* _primary_term
-* _source
+* \_index:文档所属索引
+* \_type:类型
+* \_id:唯一索引
+* \_version
+* \_seq_no
+* \_primary_term
+* \_source
 
 ### 一些注意的点
 * 如果根据id检索某文档时，该id并不存在，则返回404http响应，且响应码中的found=false
