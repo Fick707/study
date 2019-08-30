@@ -1,5 +1,6 @@
 # PostGres QL 命令备忘
 
+## 登录退出
 * 切换到postgres用户
 > su postgres
 
@@ -7,6 +8,12 @@
 > psql
 * 或者指定登录用户和登录的数据库
 > psql -U user -d dbname
+
+* 退出
+> \q
+
+* 修改某用户密码
+> \password userName
 
 * 列举数据库
 > \l
@@ -22,6 +29,17 @@
 
 * 查看索引
 > \di
+
+## 服务信息命令
+
+* 查看字符编码
+> \encoding
+
+* 显示服务发行条款
+> \copyright
+
+* 帮助
+> \h
 
 ```注:```
 
