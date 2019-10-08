@@ -3,6 +3,16 @@
 ## kafka 历史
 Kafka是最初由Linkedin公司开发，是一个分布式、支持分区的（partition）、多副本的（replica），基于zookeeper协调的分布式消息系统，它的最大的特性就是可以实时的处理大量数据以满足各种需求场景：比如基于hadoop的批处理系统、低延迟的实时系统、storm/Spark流式处理引擎，web/nginx日志、访问日志，消息服务等等，用scala语言编写，Linkedin于2010年贡献给了Apache基金会并成为顶级开源 项目。
 
+## kafkfa 核心概念
+
+* Broker：Kafka节点，一个Kafka节点就是一个broker，多个broker可以组成一个Kafka集群。
+* Topic：一类消息，消息存放的目录即主题；
+* Partition：topic物理上的分组，一个topic可以分为多个partition，每个partition是一个有序的队列；
+* Segment：partition物理上由多个segment组成，每个Segment存着message信息；
+* Producer : 生产message发送到topic；
+* Consumer : 订阅topic消费message, consumer作为一个线程来消费；
+* Consumer Group：一个Consumer Group包含多个consumer；
+
 # 前言
 
 ## Kafka的特性:
@@ -159,4 +169,23 @@ Kafka是最初由Linkedin公司开发，是一个分布式、支持分区的（p
 * 异步通信：作为MQ，Producer与Consumer异步通信
 
 
-https://blog.csdn.net/lingbo229/article/details/80761778
+# kafka 文件存储机制
+
+## 为什么kafka使用磁盘而不是内存却能高效存储
+
+1. 顺序i/o，append only log；
+2. 文件缓存/直接内存映射；周期性刷入磁盘；
+3. parition大文件分成多个小文件段(Segment);
+4. index元数据全部映射到memory（内存映射文件）,可以避免segment file的IO磁盘操作。通过索引文件稀疏存储，可以大幅降低index文件元数据占用空间大小;
+
+## 数据的存储
+
+1. 数据文件分段；
+2. 为数据文件创建索引：
+	* 索引文件名与数据文件名一样，但后缀是.index；
+	* 索引文件中的每个条目，包含两个部分，即offset和position;
+	* 索引文件中的offset是该索引文件的相对offset；这样可以减少索引文件占用空间；
+	* position表示访条消息在数据文件中的绝对位置；
+	* index文件中并，没有为所有消息建立索引，而是使用了稀疏索引，每隔一定字节的数据建立一条索引。
+		* 这样索引文件会很小，索引文件可以保留在内存中；
+		* 但未索引的消息就不能一次性定位到，需要做一次顺序扫描，但其范围已经很小了；
