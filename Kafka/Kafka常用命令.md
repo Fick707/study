@@ -7,6 +7,11 @@
 bin/kafka-topics.sh --create --zookeeper 10.91.0.57:2181 --replication-factor 2 --partitions 4 --topic test
 ```
 
+* 更新主题
+```
+bin/kafka-topics.sh --alter --topic GINA_BASE_TOPIC_SEAWEED_UPLOAD_TASK --zookeeper 10.9.147.178:2181 --partitions 12
+```
+
 * 删除主题
 ```
 bin/kafka-topics.sh --delete --zookeeper 127.0.0.1:2181 --topic test0
