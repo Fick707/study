@@ -1,0 +1,1 @@
+# typescript 接口
