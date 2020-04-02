@@ -6,3 +6,9 @@
 ```
 npm i yarn -g
 ```
+
+## yarn 升级
+* 用npm升级至最新版本  
+```
+npm install yarn@latest -g
+```
