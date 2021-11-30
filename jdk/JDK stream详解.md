@@ -220,6 +220,11 @@ Stream 有三个 match 方法，从语义上说：
 它们都不是要遍历全部元素才能返回结果。例如 allMatch 只要一个元素不满足条件，就 skip 剩下的所有元素，返回 false。
 
 ## 进阶（自已构造流）
+
+### group by
+
+[stream group by](https://blog.csdn.net/frankenjoy123/article/details/70739800)
+
 ### Stream.generate
 
 通过实现 Supplier 接口，你可以自己来控制流的生成。这种情形通常用于随机数、常量的 Stream，或者需要前后元素间维持着某种状态信息的 Stream。把 Supplier 实例传递给 Stream.generate() 生成的 Stream，默认是串行（相对 parallel 而言）但无序的（相对 ordered 而言）。由于它是无限的，在管道中，必须利用 limit 之类的操作限制 Stream 大小。
