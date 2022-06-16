@@ -223,7 +223,7 @@ Stream 有三个 match 方法，从语义上说：
 
 ### group by
 
-[stream group by](https://blog.csdn.net/frankenjoy123/article/details/70739800)
+[stream group by](https://blog.csdn.net/frankenjoy123/article/details/70739800)  
 [stream group by 2](https://blog.csdn.net/sugelachao/article/details/117736155)
 
 ### Stream.generate
