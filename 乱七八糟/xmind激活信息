@@ -1,0 +1,35 @@
+xmind激活信息：
+
+/Users/figo/Library/Application Support/XMind/Electron v3/vana/state目录下存放了激活信息，其中  activation.json中：
+
+trialTimeRawData是试用信息的原始数据密文
+试用信息
+{
+	start:232342,
+	end:3423423,
+	email:342342,
+
+}
+
+账户订阅数据在account里，rawSubscriptionData
+
+
+解析订阅数据的方法：parseSubscriptionData,解析过程：，拿到密文后，先base64编码，再用publickey 解密
+
+
+* 试用信息和订阅信息数据内容应该是类似的，都用parseSubscriptionData方法解析的
+
+
+activation/parseSubscriptionData
+
+
+应用文件可修改：/Applications/XMind.app/Contents/Resources/app.asar
+可以将这个文件复制到某目录下，然后后asar命令解压： asar extract app.asar ./xmind 
+其中xmind目录提前建好，则该目录下main/main.js即是主文件，可以修改这个文件达到破解目的；可以格式化这个js文件，好找目标，然后直接在/Applications/XMind.app/Contents/Resources/app.asar文件中执行修改操作，修改前备份原文件
+
+搜索BEGIN PUBLIC KEY关键字，可以搜索出多个公钥内容
+
+-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAlPlpYTmSDKVWhIvSk0N5\n01AD/t+4xblO9suabgP7CUeGg/CqGsv3bVkTtw/qsNW2DvYS0Rc25vB65vs6gbzU\nIsne9U0RygnnRkJJA2706hRqRQC0Q5dUxs52+8paJ7QodeTvOkD1RBybjjiVI0Mp\njgqb4zhNWSU2upTjbMU1QjnaMGjsWdtnXSz8AALbsBVHpnyT4fE/XKSWepYHGuwc\nUsEs7iNUdU8/bQwLkR8qN/CPzbFHoxF3iHSEkHZlePYaBdAJywqP56g4DHKMZRi1\nk/cN+UnFndPMp+QuloGtCvPQpGzOurnuAokF2E3gQFLtZxz16wOmeSHnk48HqD0k\nBMp/1x1b+gwndRVngKkfQdl3xRfe/d5evAFXKT0hPt3ttZ5DBbi/WEhrjp/C+Smd\nXMWcimLNbj7w3ELGohZs9AjCNogzaUuvAPuU/LN6p0MFXc5YaPawUES/2eC18ipb\nvRt7Air9O0kFCsxzqcEtRTyM1j+QAtwwztFA1FhjO0X+wxhByHjWtMUkMRHo6f+P\nmbTG/DbP2hwx2+x0LByCQ9NlQC9VaBtSd1X8cJ7fL1qtE6V04CJdHEzZf8QNRNvI\nFK5IO2DIVE5v4DRTLIISeWuAegP8Lv3BBJ3nxkX1EZRNMdIco5NkH0sM5sM8Ol9R\nI4GqvluVMIro2tIX5UVUV0kCAwEAAQ==\n-----END PUBLIC KEY-----"
+
+
+
